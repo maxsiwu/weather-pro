@@ -1,15 +1,16 @@
-import ListItem from './ListItem'
-import { User } from '../../interfaces'
+import { City } from '../../interfaces'
+import React from 'react'
+import CityListItem from './CityListItem'
 
 type Props = {
-  items: User[]
+  items: City[]
 }
 
 const List = ({ items }: Props) => (
   <ul>
     {items.map((item) => (
       <li key={item.id}>
-        <ListItem data={item} />
+        <CityListItem data={item} />
       </li>
     ))}
   </ul>

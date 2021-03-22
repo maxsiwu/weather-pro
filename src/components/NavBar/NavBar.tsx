@@ -24,8 +24,8 @@ function NavBar() {
                 </Typography>
                 <Box display="flex">
                     <ActiveLink href="/">Home</ActiveLink>
-                    <ActiveLink href="/about">About</ActiveLink>
-                    <ActiveLink href="/users">Users</ActiveLink>
+                    {/* <ActiveLink href="/about">About</ActiveLink> */}
+                    <ActiveLink href="/cities">Cities</ActiveLink>
                     <ActiveLink href="/api/users">API Users</ActiveLink>
                 </Box>
             </Box>

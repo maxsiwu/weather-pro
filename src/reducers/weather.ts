@@ -1,9 +1,9 @@
+import { WholeDayWeather } from "../../interfaces/whole-day-weather"
 import { SetCityWeatherAction, SetCityWeatherErrorAction } from "../actions"
-import { WeatherData } from "../models/weather-data"
 
 interface WeatherState {
     isLoading: boolean;
-    weatherDataList: WeatherData[];
+    weatherDataList: WholeDayWeather[];
     cityName: string;
     loadingError: boolean;
 }

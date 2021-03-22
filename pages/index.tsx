@@ -22,7 +22,7 @@ const IndexPageTemplate = (props: Props) => {
     setSearchTerm(event.target.value);
   }
   const handleClick = () => {
-    getCityWeather('');
+    // getCityWeather('');
   }
   return (
     <Layout title="Weather Pro Home">

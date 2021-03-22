@@ -35,4 +35,5 @@ export interface WeatherData {
         pod: string;
     }
     dt_txt: Date; // date string in UTC
+    date?: number; // for sorting data in action, not returned from API
 };
