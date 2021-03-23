@@ -1,6 +1,11 @@
 import { WeatherData } from "../../interfaces/weather-data"
 import { WholeDayWeather } from "../../interfaces/whole-day-weather"
 
+/**
+ * get aggregated data from 40 data points to 5
+ * @param weatherData - WeatherData[]
+ * @returns WholeDayWeather[]
+ */
 export const getFiveDayList = (weatherData: WeatherData[]): WholeDayWeather[] => {
 
     if (weatherData.length === 0){
@@ -34,7 +39,12 @@ export const getFiveDayList = (weatherData: WeatherData[]): WholeDayWeather[] =>
     return simplifiedData
 }
 
-const getWholeDayData = (arr: WeatherData[]) => {
+/**
+ * evaluate data points within a day to get Max Min temp and the other properties
+ * @param arr - WeatherData[]
+ * @returns WholeDayWeather
+ */
+const getWholeDayData = (arr: WeatherData[]): WholeDayWeather => {
     arr.sort(function (a, b) {
         return a.main.temp - b.main.temp
     })

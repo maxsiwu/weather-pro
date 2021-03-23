@@ -39,8 +39,10 @@ Went well:
 -deploy on Vercel
 -styling turned out to be less hectic 
 Can be better:
--Wish their API documentation is more detailed
--It would be nice to have a proper province name as well, not available from the .json found on their website
+-Material UI doesn't work smoothly with NextJS, ended up having to include _app and _document
+-Wish their API documentation is more detailed and easy to read
+-It would be nice to have a proper province name, not available from the .json found on their website
+-Did not want to experiment with NextJS at first so ended up having to create two functional projects, one just react, the other with NextJS, spent additional time learning NextJS which increased time spent on the project overall
 
 ### Instructions to run assignment locally
 npm run dev
@@ -49,7 +51,8 @@ npm run dev
 -design decision regarding having a 'search' button or not, for most people it's second nature to click 'enter' but not 100% for all people
 -considered adding more features like index for cities where all are available but might not be so valuable
 -might have been a perfect chance to try out graphQL but consider how much time has been spent on learning NextJS, did not want to go that far
--most important part: did NOT implement any unit test
+-did NOT implement any unit test
+-nicer loading screen when going from city list to single weather page
 -A nicer Not-found page
 
 ### Other information about your submission that you feel it's important that we know if applicable.

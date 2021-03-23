@@ -53,7 +53,7 @@ const WeatherTemplate = ({ id, weather, getCityWeather }: Props) => {
                                         <Typography variant="h6" className={styles.evenRow}>{w.temp_max.toFixed(1)}&#176;</Typography>
                                         <Typography className={styles.oddRow}>{w.feels_like.toFixed(1)}&#176;</Typography>
                                         <Typography className={styles.evenRow}>{w.temp_min.toFixed(1)}&#176;</Typography>
-                                        <Typography className={styles.oddRow}>{w.pop*100}%</Typography>
+                                        <Typography className={styles.oddRow}>{(w.pop*100).toFixed(0)}%</Typography>
                                         <Typography className={styles.evenRow}>{w.wind_speed}</Typography>
                                     </Box>
                                 </Grid>

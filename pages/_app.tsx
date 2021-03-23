@@ -23,7 +23,7 @@ export default function MyApp(props:any) {
   const { Component, pageProps } = props
 
   useEffect(() => {
-    // Remove the server-side injected CSS.
+    // Remove the server-side injected CSS. Do not remove, added for Material UI
     const jssStyles = document.querySelector('#jss-server-side')
     if (jssStyles && jssStyles.parentElement) {
       jssStyles.parentElement.removeChild(jssStyles)

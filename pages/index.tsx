@@ -19,6 +19,10 @@ type Props = ConnectedProps<typeof connector>
 const IndexPageTemplate = ({data, isLoading, getCityList}: Props) => {
   const [searchInput, setSearchInput] = useState<string>('')
 
+  /**
+   * handle input change
+   * @param event - ChangeEvent
+   */
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const input = event.target.value
     setSearchInput(input)
