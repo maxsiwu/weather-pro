@@ -13,11 +13,8 @@ type Props = {
 
 const WithStaticProps = ({ items }: Props) => (
   <Layout title="City Page">
-    <h1>Users List</h1>
-    <p>
-      Example fetching data from inside <code>getStaticProps()</code>.
-    </p>
-    <p>You are currently on: /cities</p>
+    <h1>City List</h1>
+    <p>You are currently on: /cities, are you here by accident</p>
     <CityList items={items} />
     <p>
       <Link href="/">

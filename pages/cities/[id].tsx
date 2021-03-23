@@ -1,10 +1,12 @@
 import { GetStaticProps, GetStaticPaths } from 'next'
 
 import { City } from '../../interfaces'
-import { sampleCityData } from '../../src/utils/sample-city-data'
 import Layout from '../../src/components/Layout'
 import React from 'react'
 import CityListDetail from '../../src/components/CityListDetail'
+import data from '../../db/city-list.json'
+
+const cityData = data as any[]
 
 type Props = {
   item?: City
@@ -33,7 +35,7 @@ export default StaticPropsDetail
 
 export const getStaticPaths: GetStaticPaths = async () => {
   // Get the paths we want to pre-render based on users
-  const paths = sampleCityData.map((city) => ({
+  const paths = cityData.map((city) => ({
     params: { id: city.id.toString() },
   }))
 
@@ -48,7 +50,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
     const id = params?.id
-    const item = sampleCityData.find((data) => data.id === Number(id))
+    const item = cityData.find((data) => data.id === Number(id))
     // By returning { props: item }, the StaticPropsDetail component
     // will receive `item` as a prop at build time
     return { props: { item } }

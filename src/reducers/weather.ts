@@ -2,10 +2,10 @@ import { WholeDayWeather } from "../../interfaces/whole-day-weather"
 import { SetCityWeatherAction, SetCityWeatherErrorAction } from "../actions"
 
 interface WeatherState {
-    isLoading: boolean;
-    weatherDataList: WholeDayWeather[];
-    cityName: string;
-    loadingError: boolean;
+    isLoading: boolean
+    weatherDataList: WholeDayWeather[]
+    cityName: string
+    loadingError: boolean
 }
 
 const initialState: WeatherState = {

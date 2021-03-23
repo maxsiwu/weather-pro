@@ -1,37 +1,37 @@
-import { WeatherData } from "../../interfaces/weather-data";
-import { WholeDayWeather } from "../../interfaces/whole-day-weather";
+import { WeatherData } from "../../interfaces/weather-data"
+import { WholeDayWeather } from "../../interfaces/whole-day-weather"
 
 export const getFiveDayList = (weatherData: WeatherData[]): WholeDayWeather[] => {
 
     if (weatherData.length === 0){
-        return [];
+        return []
     }
     const arrayWithDate = weatherData.map(wd => {
         return {
             ...wd,
             date: new Date(wd.dt*1000).getDate()
         }
-    });
+    })
     
     // create a map with date as key
     const groupedMap = arrayWithDate.reduce(
         (entryMap, e) => entryMap.set(e.date, [...entryMap.get(e.date)||[], e]),
         new Map()
-    );
+    )
 
-    let simplifiedData: WholeDayWeather[] = [];
+    let simplifiedData: WholeDayWeather[] = []
 
     // push day data to empty array
     Array.from(groupedMap.keys()).forEach(key => {
-        simplifiedData.push(getWholeDayData(groupedMap.get(key)));
+        simplifiedData.push(getWholeDayData(groupedMap.get(key)))
     })
 
     // return an array with 5 data points
     if (simplifiedData.length > 5) {
-        simplifiedData.shift();
+        simplifiedData.shift()
     }
 
-    return simplifiedData;
+    return simplifiedData
 }
 
 const getWholeDayData = (arr: WeatherData[]) => {
@@ -40,8 +40,8 @@ const getWholeDayData = (arr: WeatherData[]) => {
     })
     
     // find the max and min of the date, max wind speed, max feels like, max pop, description, icon
-    const dataPointWithMaxTemp = arr[arr.length - 1];
-    const dataPointWithMinTemp = arr[0];
+    const dataPointWithMaxTemp = arr[arr.length - 1]
+    const dataPointWithMinTemp = arr[0]
 
     const result: WholeDayWeather = {
         date: new Date(dataPointWithMaxTemp.dt*1000),
@@ -54,6 +54,6 @@ const getWholeDayData = (arr: WeatherData[]) => {
         wind_speed: dataPointWithMaxTemp.wind.speed
     }
 
-    return result;
+    return result
     
 }

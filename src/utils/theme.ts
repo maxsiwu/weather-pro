@@ -1,4 +1,4 @@
-import { createMuiTheme } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles'
 
 export const theme = createMuiTheme({
     palette: {
@@ -14,5 +14,5 @@ export const theme = createMuiTheme({
             'Karla',
             'sans-serif',
         ].join(','),
-    }
-});
+    },
+})

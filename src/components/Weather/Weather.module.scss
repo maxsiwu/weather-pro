@@ -1,0 +1,45 @@
+.weatherGrid{
+    margin: 0 auto;
+    max-width: 800px;
+    width: 100%;
+    img {
+        width: 80px;
+    }
+    @media only screen and (max-width: 900px) {
+        h6 {
+            font-size: 1rem;
+        }
+        p {
+            font-size: .8rem;
+        }
+        img {
+            width: 50px;
+        }
+    }
+    
+    @media only screen and (max-width: 620px) {
+        h6 {
+            font-size: 14px;
+        }
+        p {
+            font-size: 12px;
+        }
+        img {
+            width: 40px;
+        }
+    }
+    .evenRow {
+        padding: .5rem;
+    }
+    
+    .oddRow {
+        padding: .5rem;
+        background-color: #EEE;
+    }
+    .description {
+        height: 60px;
+        text-transform: capitalize;
+    }
+}
+
+

@@ -1,21 +1,21 @@
-import { WeatherData } from "./weather-data";
+import { WeatherData } from "./weather-data"
 
 export interface WeatherResponse {
-    cod: string;
-    message: number;
-    cnt: number;
-    list: WeatherData[];
+    cod: string
+    message: number
+    cnt: number
+    list: WeatherData[]
     city: {
-        id: number;
-        name: string;
+        id: number
+        name: string
         coord: {
-            lat: number;
-            lon: number;
+            lat: number
+            lon: number
         },
-        country: string;
-        population: number;
-        timezone: number;
-        sunrise: number;
-        sunset: number;
+        country: string
+        population: number
+        timezone: number
+        sunrise: number
+        sunset: number
     }
 }

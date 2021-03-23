@@ -1,43 +1,59 @@
-import { Button, InputBase, Typography } from '@material-ui/core'
+import { Box, CircularProgress, TextField, Typography } from '@material-ui/core'
 import React, { ChangeEvent, useState } from 'react'
-import { getCityWeather } from '../src/actions';
 import Layout from '../src/components/Layout'
-import { RootState } from '../src/reducers';
-import { connect, ConnectedProps } from "react-redux";
+import { RootState } from '../src/reducers'
+import { connect, ConnectedProps } from 'react-redux'
+import CityList from '../src/components/CityList'
+import { getCityList } from '../src/actions/index'
 
 const mapStateToProps = (state: RootState) => {
-  const { weather } = state;
-  return weather;
+  const { weather, cityList } = state
+  const { data, isLoading } = cityList
+  return { weather, data, isLoading}
 }
 
-const connector = connect(mapStateToProps, {getCityWeather});
+const connector = connect(mapStateToProps, {getCityList})
 
-type Props = ConnectedProps<typeof connector>;
+type Props = ConnectedProps<typeof connector>
 
-const IndexPageTemplate = (props: Props) => {
-  const [searchTerm, setSearchTerm] = useState<string>('');
-  const { getCityWeather } = props;
+const IndexPageTemplate = ({data, isLoading, getCityList}: Props) => {
+  const [searchInput, setSearchInput] = useState<string>('')
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(event.target.value);
+    const input = event.target.value
+    setSearchInput(input)
+    
+    if(input.trim().length > 2){
+      getCityList(input)
+    }
   }
-  const handleClick = () => {
-    // getCityWeather('');
-  }
+
   return (
     <Layout title="Weather Pro Home">
-      <Typography variant="h5">City Search</Typography>
-      <br />
-      <InputBase
-        placeholder=" Search…"
-        style={{ border: '1px solid black', padding: '.25rem' }}
-        inputProps={{ 'aria-label': 'search' }}
-        value={searchTerm}
-        onChange={handleChange}
-      />
-      <Button onClick={handleClick}>
-        Get Vancouver Weather
-      </Button>
+      <Box maxWidth="800px" m='0 auto' p={2}>
+        <Typography variant="h5" color="primary">Get 5-day weather forecast</Typography>
+        <br />
+        <Box position="relative">
+          <TextField
+            placeholder="City name"
+            inputProps={{ 'aria-label': 'search' }}
+            onChange={handleChange}
+            variant="outlined"
+            size="small"
+            fullWidth
+          />
+          <Box position="absolute" top="2.5rem" width="100%" border="1px solid #EEE">
+            {isLoading && searchInput.trim().length > 2 && 
+              <Box display="flex" justifyContent="center" alignItems="middle" p={1}>
+                <CircularProgress color="secondary" />
+              </Box>
+            }
+            {!isLoading && data && searchInput.trim().length > 2 &&
+              <CityList items={data}/>
+            }
+          </Box>
+        </Box>
+      </Box>
     </Layout>
   )
 }

@@ -1,34 +1,34 @@
-import React, { Fragment, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import Head from 'next/head';
-import { ThemeProvider } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
+import React, { Fragment, useEffect } from 'react'
+import PropTypes from 'prop-types'
+import Head from 'next/head'
+import { ThemeProvider } from '@material-ui/core/styles'
+import CssBaseline from '@material-ui/core/CssBaseline'
 
-import '../styles/index.scss';
-import { theme } from '../src/utils/theme';
-import { applyMiddleware, createStore } from 'redux';
-import { rootReducer } from '../src/reducers';
-import { composeWithDevTools } from 'redux-devtools-extension';
-import thunk from 'redux-thunk';
-import { Provider } from 'react-redux';
+import '../styles/index.scss'
+import { theme } from '../src/utils/theme'
+import { applyMiddleware, createStore } from 'redux'
+import { rootReducer } from '../src/reducers'
+import { composeWithDevTools } from 'redux-devtools-extension'
+import thunk from 'redux-thunk'
+import { Provider } from 'react-redux'
 
 const store = createStore(
   rootReducer,
   composeWithDevTools(
     applyMiddleware(thunk),
   )
-);
+)
 
 export default function MyApp(props:any) {
-  const { Component, pageProps } = props;
+  const { Component, pageProps } = props
 
   useEffect(() => {
     // Remove the server-side injected CSS.
-    const jssStyles = document.querySelector('#jss-server-side');
+    const jssStyles = document.querySelector('#jss-server-side')
     if (jssStyles && jssStyles.parentElement) {
-      jssStyles.parentElement.removeChild(jssStyles);
+      jssStyles.parentElement.removeChild(jssStyles)
     }
-  }, []);
+  }, [])
 
   return (
     <Fragment>
@@ -45,10 +45,10 @@ export default function MyApp(props:any) {
         </Provider>
       </ThemeProvider>
     </Fragment>
-  );
+  )
 }
 
 MyApp.propTypes = {
   Component: PropTypes.elementType.isRequired,
   pageProps: PropTypes.object.isRequired,
-};
+}
