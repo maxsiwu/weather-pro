@@ -16,7 +16,7 @@ type Props = {
 const StaticPropsDetail = ({ item, errors }: Props) => {
   if (errors) {
     return (
-      <Layout title="Error">
+      <Layout>
         <p>
           <span style={{ color: 'red' }}>Error:</span> {errors}
         </p>
@@ -25,7 +25,7 @@ const StaticPropsDetail = ({ item, errors }: Props) => {
   }
 
   return (
-    <Layout title={`${item ? item.name : 'City Weather Detail'}`}>
+    <Layout>
       {item && <CityListDetail item={item} />}
     </Layout>
   )

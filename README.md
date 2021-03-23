@@ -10,7 +10,7 @@ If applicable, please provide the url where we can find and interact with your r
 12 hours
 
 ### Assumptions made
--App client is myself
+-App client: Max Wu
 -Language: English
 -Operation system: iOS Big Sur 11.1
 -Browser to test on: Chrome
@@ -50,6 +50,7 @@ npm run dev
 -considered adding more features like index for cities where all are available but might not be so valuable
 -might have been a perfect chance to try out graphQL but consider how much time has been spent on learning NextJS, did not want to go that far
 -most important part: did NOT implement any unit test
+-A nicer Not-found page
 
 ### Other information about your submission that you feel it's important that we know if applicable.
 ### Your feedback on this technical challenge

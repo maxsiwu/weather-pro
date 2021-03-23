@@ -7,7 +7,7 @@ type Props = {
   title?: string
 }
 
-const Layout = ({ children, title = 'Weather Pro' }: Props) => (
+const Layout = ({ children }: Props) => (
   <div>
     <NavBar />
     <Box p={{xs:1, sm:2, md:3}} pt={1} mt="64px">

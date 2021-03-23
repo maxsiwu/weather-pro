@@ -29,7 +29,7 @@ const IndexPageTemplate = ({data, isLoading, getCityList}: Props) => {
   }
 
   return (
-    <Layout title="Weather Pro Home">
+    <Layout>
       <Box maxWidth="800px" m='0 auto' p={2}>
         <Typography variant="h5" color="primary">Get 5-day weather forecast</Typography>
         <br />
