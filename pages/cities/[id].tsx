@@ -35,9 +35,9 @@ export default StaticPropsDetail
 
 export const getStaticPaths: GetStaticPaths = async () => {
   // Get the paths we want to pre-render based on users
-  const paths = cityData.map((city) => ({
-    params: { id: city.id.toString() },
-  }))
+  // const paths = cityData.map((city) => ({
+  //   params: { id: city.id.toString() },
+  // }))
 
   // We'll pre-render only these paths at build time.
   // { fallback: false } means other routes should 404.
