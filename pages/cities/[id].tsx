@@ -1,5 +1,5 @@
 import Layout from '../../src/components/Layout'
-import React, { useEffect } from 'react'
+import React from 'react'
 import CityListDetail from '../../src/components/CityListDetail'
 import { RootState } from '../../src/reducers'
 import { connect, ConnectedProps } from 'react-redux'
