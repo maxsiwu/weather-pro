@@ -10,7 +10,7 @@ https://weather-pro.vercel.app/
 12 hours
 
 ### Assumptions made
--client: Max Wu
+-client: myself
 -language: English
 -operation system: iOS Big Sur 11.1
 -browser to test on: Chrome
