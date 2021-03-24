@@ -4,30 +4,34 @@ import { connect, ConnectedProps } from 'react-redux'
 import { getCityWeather } from '../../actions'
 import { RootState } from '../../reducers'
 import { getDayOfWeek } from '../../utils/date-utils'
+import { Spinner } from '../shared/Spinner'
 import styles from './Weather.module.scss'
 
-const mapStateToProps = (state: RootState, cityId: {id: number} ) => {
+const mapStateToProps = (state: RootState, props: {id?: number} ) => {
     const { weather } = state
-    const { id } = cityId
-    return { weather, id }
+    const { id } = props
+    return { weather, id, isLoading: weather.isLoading }
 }
 
 const connector = connect(mapStateToProps, { getCityWeather })
 
 type Props = ConnectedProps<typeof connector>
 
-const WeatherTemplate = ({ id, weather, getCityWeather }: Props) => {
+const WeatherTemplate = ({ id, weather, isLoading, getCityWeather }: Props) => {
     const { weatherDataList } = weather
 
     useEffect(()=> {
         if(id) {
             getCityWeather(id)
         }
-    }, [])
+    }, [id])
 
     return (
         <>
-            {weatherDataList.length > 0 &&
+            {(isLoading || !id) && 
+                <Spinner />
+            }
+            {!isLoading && weatherDataList.length > 0 &&
                 <Box className={styles.weatherGrid}>
                     <Grid container>
                         <Grid item xs={2}>

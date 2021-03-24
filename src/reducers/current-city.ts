@@ -1,35 +1,33 @@
 import { City } from "../../interfaces"
-import { SetCityListAction, SetCityListErrorAction, SetCityListLoadingAction } from "../actions"
+import { SetCurrentCityAction, SetCurrentCityErrorAction, SetCurrentCityLoadingAction } from "../actions"
 
-interface CityListState {
+interface CityState {
     isLoading: boolean
-    data: City[]
+    city?: City
     loadingError: boolean
 }
 
-const initialState: CityListState = {
+const initialState: CityState = {
     isLoading: true,
-    data: [],
     loadingError: false,
 }
 
-const cityList = (state = initialState, action: SetCityListAction | SetCityListErrorAction | SetCityListLoadingAction) => {
+const currentCity = (state = initialState, action: SetCurrentCityAction | SetCurrentCityErrorAction | SetCurrentCityLoadingAction) => {
     switch (action.type) {
-        case 'SET_CITY_LIST':
+        case 'SET_CURRENT_CITY':
             return {
                 ...state,
-                data: action.cityList,
+                city: action.currentCity,
                 isLoading: false,
                 loadingError: false,
             }
-        case 'SET_CITY_LIST_ERROR':
+        case 'SET_CURRENT_CITY_ERROR':
             return {
                 ...state,
-                data: [],
                 isLoading: false,
                 loadingError: true,
             }
-        case 'SET_CITY_LIST_LOADING':
+        case 'SET_CURRENT_CITY_LOADING':
             return {
                 ...state,
                 isLoading: action.isLoading
@@ -39,4 +37,4 @@ const cityList = (state = initialState, action: SetCityListAction | SetCityListE
     }
 }
 
-export default cityList
+export default currentCity

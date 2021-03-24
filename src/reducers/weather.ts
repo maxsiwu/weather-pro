@@ -1,5 +1,5 @@
 import { WholeDayWeather } from "../../interfaces/whole-day-weather"
-import { SetCityWeatherAction, SetCityWeatherErrorAction } from "../actions"
+import { SetCityWeatherAction, SetCityWeatherErrorAction, SetCityWeatherLoadingAction } from "../actions"
 
 interface WeatherState {
     isLoading: boolean
@@ -11,25 +11,30 @@ interface WeatherState {
 const initialState: WeatherState = {
     isLoading: true,
     weatherDataList: [],
-    cityName: 'Vancouver',
+    cityName: '',
     loadingError: false,
 }
 
-const weather = (state = initialState, action: SetCityWeatherAction | SetCityWeatherErrorAction) => {
+const weather = (state = initialState, action: SetCityWeatherAction | SetCityWeatherErrorAction | SetCityWeatherLoadingAction) => {
     switch (action.type) {
-        case 'GET_CITY_WEATHER':
+        case 'SET_CITY_WEATHER':
             return {
                 ...state,
                 weatherDataList: action.dataList,
                 isLoading: false,
                 loadingError: false,
             }
-        case 'GET_CITY_WEATHER_ERROR':
+        case 'SET_CITY_WEATHER_ERROR':
             return {
                 ...state,
                 weatherDataList: [],
                 isLoading: false,
                 loadingError: true,
+            }
+        case 'SET_CITY_LOADING':
+            return {
+                ...state,
+                isLoading: action.isLoading
             }
         default:
             return state

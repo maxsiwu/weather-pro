@@ -4,6 +4,7 @@ import { useRouter } from 'next/router'
 import React, { MouseEventHandler, PropsWithChildren } from 'react'
 import { theme } from '../utils/theme'
 
+// for active links used in NavBar component
 export default function ActiveLink({ children, href }: PropsWithChildren<{href: string}>) {
     const router = useRouter()
     const style = {

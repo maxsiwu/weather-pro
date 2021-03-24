@@ -1,24 +1,35 @@
-import { GetStaticProps, GetStaticPaths } from 'next'
-
-import { City } from '../../interfaces'
 import Layout from '../../src/components/Layout'
-import React from 'react'
+import React, { useEffect } from 'react'
 import CityListDetail from '../../src/components/CityListDetail'
-import data from '../../db/city-list.json'
+import { RootState } from '../../src/reducers'
+import { connect, ConnectedProps } from 'react-redux'
+import { getCityById } from '../../src/actions/index'
+import { useRouter } from 'next/router'
+import { Spinner } from '../../src/components/shared/Spinner'
 
-const cityData = data as any[]
+const mapStateToProps = (state: RootState) => {
+  const { currentCity } = state
 
-type Props = {
-  item?: City
-  errors?: string
+  return { city: currentCity.city, loadingCity: currentCity.isLoading, errors: currentCity.loadingError }
 }
 
-const StaticPropsDetail = ({ item, errors }: Props) => {
+const connector = connect(mapStateToProps, { getCityById })
+
+type Props = ConnectedProps<typeof connector>
+
+const StaticPropsDetailTempate = ({ city, loadingCity, errors, getCityById }: Props) => {
+  const { id } = useRouter().query
+
+    if(!city && id) {
+      // call api with id
+      getCityById(id as string)
+    }
+
   if (errors) {
     return (
       <Layout>
         <p>
-          <span style={{ color: 'red' }}>Error:</span> {errors}
+          <span style={{ color: 'red' }}>Error loading city weather data</span>
         </p>
       </Layout>
     )
@@ -26,35 +37,14 @@ const StaticPropsDetail = ({ item, errors }: Props) => {
 
   return (
     <Layout>
-      {item && <CityListDetail item={item} />}
+      {city && <CityListDetail item={city} />}
+      {loadingCity &&
+        <Spinner />
+      }
     </Layout>
   )
 }
 
+const StaticPropsDetail = connector(StaticPropsDetailTempate)
+
 export default StaticPropsDetail
-
-export const getStaticPaths: GetStaticPaths = async () => {
-  // Get the paths we want to pre-render based on users
-  // const paths = cityData.map((city) => ({
-  //   params: { id: city.id.toString() },
-  // }))
-
-  // We'll pre-render only these paths at build time.
-  // { fallback: false } means other routes should 404.
-  return { paths: [], fallback: true }
-}
-
-// This function gets called at build time on server-side.
-// It won't be called on client-side, so you can even do
-// direct database queries.
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  try {
-    const id = params?.id
-    const item = cityData.find((data) => data.id === Number(id))
-    // By returning { props: item }, the StaticPropsDetail component
-    // will receive `item` as a prop at build time
-    return { props: { item } }
-  } catch (err) {
-    return { props: { errors: err.message } }
-  }
-}
